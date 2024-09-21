@@ -204,7 +204,7 @@ int main() {
 	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons(5002);
-	addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+	addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	bind(sock, (sockaddr*)&addr, sizeof(addr));
 
 	listen(sock, 64);
