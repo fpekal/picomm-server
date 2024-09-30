@@ -93,7 +93,10 @@ std::string chat_controller(nlohmann::json j) {
 			std::vector<std::string> messages_str;
 
 			for (auto& m : messages) {
-				messages_str.push_back(m.content);
+				std::string content = m.content;
+				std::transform(content.begin(), content.end(), content.begin(), [](unsigned char c){ return c=='\0' ? ' ' : c; });
+
+				messages_str.push_back(content);
 			}
 
 			ret = nlohmann::json({{"status", 0}, {"response", {{"messages", messages_str}}}});
